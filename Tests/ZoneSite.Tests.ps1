@@ -70,6 +70,14 @@ Describe 'SimonW_ZoneSite' {
                     }
                 }
             }
+
+            It "Returns false if reg entry for Type doesn't exist" {
+                Test-TargetResource -Uri $Uris['exists'] -Ensure Present -Type ldap -Zone $Zone -Platform x64 | Should Be $false
+            }
+
+            It "Returns false if reg entry for Zone doesn't exist" {
+                Test-TargetResource -Uri $Uris['exists'] -Ensure Present -Type $Type -Zone TrustedSite -Platform x64 | Should Be $false
+            }
         }
     }
 }
